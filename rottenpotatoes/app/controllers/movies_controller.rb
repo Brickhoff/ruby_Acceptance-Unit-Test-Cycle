@@ -53,12 +53,23 @@ class MoviesController < ApplicationController
     flash[:notice] = "#{@movie.title} was successfully updated."
     redirect_to movie_path(@movie)
   end
-
+  
+  
   def destroy
     @movie = Movie.find(params[:id])
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
   end
-
+  
+  def same_director
+    @movie = Movie.find(params[:id])
+    director = @movie.director
+    if director.empty? then 
+      redirect_to movies_path
+    else
+      @movies = Movie.where(Director: director)
+    end
+  end
+  
 end

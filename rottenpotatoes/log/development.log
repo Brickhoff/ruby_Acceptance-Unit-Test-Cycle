@@ -1150,3 +1150,49 @@ ActionController::RoutingError (No route matches [GET] "/hw-acceptance-unit-test
   Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
   Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
   Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (33.7ms)
+
+
+Started GET "/movies/1" for 165.91.13.226 at 2017-03-22 03:26:19 +0000
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered movies/show.html.haml within layouts/application (18.3ms)
+Completed 200 OK in 385ms (Views: 339.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/movies/new" for 165.91.13.226 at 2017-03-22 03:26:24 +0000
+Processing by MoviesController#new as HTML
+  Rendered movies/new.html.haml within layouts/application (12.9ms)
+Completed 200 OK in 23ms (Views: 23.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/movies" for 165.91.13.226 at 2017-03-22 03:27:48 +0000
+Processing by MoviesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bul8i234GKCqAjDdpSCyPAykq7/D343JwaThRPVMEAhxwPRTRK6vVOH6g4iAsdZiu/PcgfYJtN71fLGRMQPC4Q==", "movie"=>{"title"=>"The Magnificent Six", "rating"=>"G", "release_date(1i)"=>"2022", "release_date(2i)"=>"8", "release_date(3i)"=>"11"}, "commit"=>"Save Changes"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "The Magnificent Six"], ["rating", "G"], ["release_date", "2022-08-11 00:00:00.000000"], ["created_at", "2017-03-22 03:27:48.665307"], ["updated_at", "2017-03-22 03:27:48.665307"]]
+  [1m[35m (12.2ms)[0m  commit transaction
+Redirected to https://ruby-on-rails-hw3-alenzyy.c9users.io/movies
+Completed 302 Found in 20ms (ActiveRecord: 12.8ms)
+
+
+Started GET "/movies" for 165.91.13.226 at 2017-03-22 03:27:48 +0000
+Processing by MoviesController#index as HTML
+Redirected to https://ruby-on-rails-hw3-alenzyy.c9users.io/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1" for 165.91.13.226 at 2017-03-22 03:27:48 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "NC-17"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}}
+  [1m[36mMovie Load (0.9ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'NC-17', 'PG', 'PG-13', 'R')[0m
+  Rendered movies/index.html.haml within layouts/application (33.8ms)
+Completed 200 OK in 53ms (Views: 51.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/movies/1" for 165.91.13.226 at 2017-03-22 03:31:31 +0000
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mMovie Load (0.1ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered movies/show.html.haml within layouts/application (3.0ms)
+Completed 200 OK in 24ms (Views: 21.9ms | ActiveRecord: 0.1ms)
